@@ -1,10 +1,13 @@
 const express= require('express');
 const ShortUrls=require('./models/urlModels');
 const {ConnectDB}=require('./connect');
+const router = require('./routes/urlRoutes');
 
 const PORT=8000;
 const app=express()
 // server.js
+
+app.use('/api/url', router)
 
 
 ConnectDB().then(()=>{
@@ -12,14 +15,6 @@ ConnectDB().then(()=>{
 }).catch((err)=>{
     console.log(`database failure: ${err}`)
 })
-
-
-
-
-
-
-
-
 
 
 
