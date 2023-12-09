@@ -1,12 +1,10 @@
 const express = require('express');
 const ShortUrls = require('../models/urlModels');
+const { handleUrls} = require('../controller/urls')
+
 const router = express.Router();
 
-router.get('/', async (req, res) => {
-    const urls = await ShortUrls.find();
-    console.log(urls);
-    res.send("done")
-})
+router.get('/', handleUrls)
 
 router.post('/', async (req, res) => {
     try {
