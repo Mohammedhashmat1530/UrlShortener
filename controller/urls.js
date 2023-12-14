@@ -1,15 +1,19 @@
 const express=require('express');
 const ShortUrls=require('../models/urlModels')
+const ShortUniqueId = require('short-unique-id');
+const uid = new ShortUniqueId({ length: 10 });
 
 async function handleUrls(req,res){
     const urls = await ShortUrls.find();
-    console.log(urls);
-    res.send("done")
+    res.render('index.ejs',{
+        allUrls:urls,
+    })
 }
 
 async function handlePostUrls(req,res){
     try {
-        await ShortUrls.create({ full: "https://facebook.com" });
+        const site=req.body.site;
+        await ShortUrls.create({ full: site,short: uid.rnd()});
         res.redirect('/api/url');
     } catch (error) {
         console.error('Error creating short URL:', error);

@@ -5,7 +5,7 @@ const { handleUrls,handlePostUrls,handleDynamicUrls} = require('../controller/ur
 const router = express.Router();
 
 router.get('/', handleUrls)
-router.post('/', handlePostUrls);
+router.post('/create', handlePostUrls);
 router.get('/:ShortUrl', handleDynamicUrls)
 
 
